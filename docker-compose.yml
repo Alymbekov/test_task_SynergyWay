@@ -10,9 +10,7 @@ services:
 
   django:
     build: ./backend
-    stdin_open: true
-    tty: true
-    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py test && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./backend:/app/backend
     ports:
